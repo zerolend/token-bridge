@@ -3,15 +3,18 @@
 // To make use of automatic environment setup:
 // - Duplicate .env.example file and name it .env
 // - Fill in the environment variables
-import 'dotenv/config'
-
-import 'hardhat-deploy'
-import 'hardhat-contract-sizer'
-import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
-import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
-import "@typechain/hardhat";
+import '@nomiclabs/hardhat-ethers'
+import '@typechain/hardhat'
+import 'hardhat-contract-sizer'
+import 'hardhat-deploy'
+import '@nomicfoundation/hardhat-verify'
+import { config } from 'dotenv'
+import { HttpNetworkAccountsUserConfig } from 'hardhat/types'
+
 import { EndpointId } from '@layerzerolabs/lz-definitions'
+
+config()
 
 // Set your preferred authentication method
 //
@@ -34,7 +37,7 @@ if (accounts == null) {
     )
 }
 
-const config: HardhatUserConfig = {
+export default {
     solidity: {
         compilers: [
             {
@@ -83,25 +86,67 @@ const config: HardhatUserConfig = {
     },
     namedAccounts: {
         deployer: {
-            default: 0, // wallet address of index[0], of the mnemonic in .env
+            default: 3, // wallet address of index[0], of the mnemonic in .env
         },
     },
-    etherscan: {
-        apiKey: {
-            manta: process.env.ETHERSCAN_API_KEY
-        },
-    },
+    // etherscan: {
+    //     apiKey: {
+    //         manta: process.env.ETHERSCAN_API_KEY || '',
+    //     },
+    // },
     typechain: {
         outDir: 'typechain',
         target: 'ethers-v5',
     },
-    zksolc: {
-        version: "latest",
-        settings: {
-          // find all available options in the official documentation
-          // https://era.zksync.io/docs/tools/hardhat/hardhat-zksync-solc.html#configuration
+    etherscan: {
+        apiKey: {
+            blast: process.env.BLASTSCAN_KEY || '',
+            linea: process.env.LINEASCAN_KEY || '',
+            xLayer: process.env.XLAYER_KEY || '',
+            mainnet: process.env.ETHERSCAN_KEY || '',
+            manta: 'test',
+            era: process.env.ZKSYNC_KEY || '',
         },
+        customChains: [
+            {
+                network: 'manta',
+                chainId: 169,
+                urls: {
+                    apiURL: 'https://pacific-explorer.manta.network/api',
+                    browserURL: 'https://pacific-explorer.manta.network',
+                },
+            },
+            {
+                network: 'linea',
+                chainId: 59144,
+                urls: {
+                    apiURL: 'https://api.lineascan.build/api',
+                    browserURL: 'https://lineascan.build',
+                },
+            },
+            {
+                network: 'blast',
+                chainId: 81457,
+                urls: {
+                    apiURL: 'https://api.blastscan.io/api',
+                    browserURL: 'https://blastscan.io',
+                },
+            },
+            {
+                network: 'xLayer',
+                chainId: 196,
+                urls: {
+                    apiURL: 'https://www.oklink.com/api/v5/explorer/contract/verify-source-code-plugin/XLAYER',
+                    browserURL: 'https://www.oklink.com/xlayer', //or https://www.oklink.com/xlayer for mainnet
+                },
+            },
+        ],
     },
+    // zksolc: {
+    //     version: 'latest',
+    //     settings: {
+    //         // find all available options in the official documentation
+    //         // https://era.zksync.io/docs/tools/hardhat/hardhat-zksync-solc.html#configuration
+    //     },
+    // },
 }
-
-export default config

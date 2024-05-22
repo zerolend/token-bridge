@@ -5,7 +5,7 @@ import { type DeployFunction } from 'hardhat-deploy/types'
 const contractName = 'ZeroOFT'
 
 const deploy: DeployFunction = async (hre) => {
-    console.log("Deploy")
+    console.log('Deploy')
     const { getNamedAccounts, deployments } = hre
 
     const { deploy } = deployments
@@ -37,10 +37,10 @@ const deploy: DeployFunction = async (hre) => {
     const { address } = await deploy(contractName, {
         from: deployer,
         args: [
-            'TEST', // name
-            'TEST', // symbol
-            "0x1a44076050125825900e736c501f859c50fE728c", // LayerZero's EndpointV2 address
-            deployer, // owner
+            // 'TEST', // name
+            // 'TEST', // symbol
+            '0x1a44076050125825900e736c501f859c50fE728c', // LayerZero's EndpointV2 address
+            // deployer, // owner
         ],
         log: true,
         skipIfAlreadyDeployed: false,

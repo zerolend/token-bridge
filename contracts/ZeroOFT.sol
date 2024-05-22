@@ -41,7 +41,7 @@ contract ZeroOFT is OFT, ERC20Permit {
         enablePermitWhitelist = what;
     }
 
-    function _update(address from, address to, uint256 value) internal virtual {
+    function _update(address from, address to, uint256 value) internal virtual override {
         require(!blacklist[from], "blacklisted");
         require(!blacklist[to], "blacklisted");
         super._update(from, to, value);
