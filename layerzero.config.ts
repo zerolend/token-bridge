@@ -2,19 +2,9 @@ import { EndpointId } from '@layerzerolabs/lz-definitions'
 
 import type { OAppOmniGraphHardhat, OmniPointHardhat } from '@layerzerolabs/toolbox-hardhat'
 
-const blastSepoliaContract: OmniPointHardhat = {
-    eid: EndpointId.BLAST_V2_TESTNET,
-    contractName: 'ZeroOFT',
-}
-
 const blastContract: OmniPointHardhat = {
     eid: EndpointId.BLAST_V2_MAINNET,
     contractName: 'ZeroOFT',
-}
-
-const lineaSepoliaContract: OmniPointHardhat = {
-    eid: EndpointId.ZKCONSENSYS_V2_TESTNET,
-    contractName: 'ZeroOFTAdapter',
 }
 
 const lineaContract: OmniPointHardhat = {
@@ -24,11 +14,6 @@ const lineaContract: OmniPointHardhat = {
 
 const ethContract: OmniPointHardhat = {
     eid: EndpointId.ETHEREUM_V2_MAINNET,
-    contractName: 'ZeroOFT',
-}
-
-const sepoliaContract: OmniPointHardhat = {
-    eid: EndpointId.SEPOLIA_V2_TESTNET,
     contractName: 'ZeroOFT',
 }
 
@@ -89,8 +74,6 @@ const config: OAppOmniGraphHardhat = {
             from: lineaContract,
             to: xlayerContract,
         },
-
-
         {
             from: blastContract,
             to: lineaContract,
@@ -111,8 +94,6 @@ const config: OAppOmniGraphHardhat = {
             from: blastContract,
             to: xlayerContract,
         },
-
-
         {
             from: ethContract,
             to: lineaContract,
@@ -133,8 +114,6 @@ const config: OAppOmniGraphHardhat = {
             from: ethContract,
             to: xlayerContract,
         },
-
-
         {
             from: zkSyncContract,
             to: lineaContract,
@@ -155,8 +134,6 @@ const config: OAppOmniGraphHardhat = {
             from: zkSyncContract,
             to: xlayerContract,
         },
-
-
         {
             from: mantaContract,
             to: lineaContract,
@@ -177,8 +154,6 @@ const config: OAppOmniGraphHardhat = {
             from: mantaContract,
             to: xlayerContract,
         },
-
-
         {
             from: xlayerContract,
             to: lineaContract,
