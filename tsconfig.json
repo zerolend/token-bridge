@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "include": ["deploy", "tasks", "test", "hardhat.config.ts"],
+  "include": ["deploy", "tasks", "test", "typechain","scripts", "hardhat.config.ts"],
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "declaration": true,
-    "declarationDir": "./types"
+    "declarationDir": "./typechain"
   },
   "files": [
     "./hardhat.config.ts",
